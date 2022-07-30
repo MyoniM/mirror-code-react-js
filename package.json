@@ -1,0 +1,51 @@
+{
+  "name": "realtime-editor",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@mantine/core": "^5.0.0",
+    "@mantine/form": "^5.0.0",
+    "@mantine/hooks": "^5.0.0",
+    "@mantine/notifications": "^5.0.0",
+    "@mantine/rte": "^5.0.0",
+    "@octokit/core": "^4.0.4",
+    "codemirror": "^5.65.2",
+    "cuid": "^2.1.8",
+    "date-fns": "^2.29.1",
+    "firebase": "^9.9.1",
+    "query-string": "^7.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "socket.io-client": "^4.4.1"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "npm run build && npm run server:prod",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

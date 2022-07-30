@@ -1,0 +1,42 @@
+.wrapper {
+  background-color: var(--dark-bg-800);
+  color: white;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.header {
+  background-color: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: var(--dark-border);
+}
+.header h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.body {
+  padding: 0 10px;
+}
+
+.body .output {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px;
+  resize: none;
+  border: none;
+  outline: none;
+  color: white;
+  min-height: 12vh;
+  max-height: 14vh;
+  width: 100%;
+  overflow: auto;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  background-color: rgb(77, 77, 77);
+}

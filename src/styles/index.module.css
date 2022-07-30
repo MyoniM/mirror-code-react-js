@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  height: calc(100vh - 55px);
+  width: 100%;
+}
+.nav {
+  height: 55px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero .heroContent {
+  text-align: center;
+}
+.heroContent h1 {
+  font-size: 4rem;
+  color: white;
+  text-shadow: var(--txt-shadow);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.heroContent p {
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: var(--txt-shadow);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.heroContent .actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+}
+.actions .btn {
+  box-shadow: 2px 2px 50px #0079f1;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.features {
+  height: 100%;
+  width: 100%;
+  background: var(--dark-bg-700);
+}

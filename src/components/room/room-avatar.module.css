@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  height: fit-content;
+  width: 70px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.wrapper .avatar {
+  width: 50px;
+}
+.wrapper h5 {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 12px;
+  color: white;
+}
+
+.avatarWrapper {
+  position: relative;
+}
+.avatarWrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -2.5px;
+  right: -2.5px;
+  height: 10px;
+  width: 10px;
+  background-color: lime;
+  border-radius: 50%;
+}

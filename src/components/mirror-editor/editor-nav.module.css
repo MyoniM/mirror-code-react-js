@@ -1,0 +1,23 @@
+.wrapper {
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 15px;
+  color: white;
+  overflow: hidden;
+  background-color: var(--dark-bg);
+  border-bottom: var(--dark-border);
+}
+
+.rightMenu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.space {
+  width: 100px;
+}

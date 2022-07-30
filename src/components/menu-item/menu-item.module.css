@@ -1,0 +1,41 @@
+.wrapper {
+  height: 35px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-left: 20px;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: "IBM Plex Sans", sans-serif;
+  letter-spacing: 1.2px;
+}
+
+.wrapper span {
+  margin-top: 3px;
+}
+
+.wrapper:hover {
+  background-color: rgb(65, 65, 90);
+}
+
+.active {
+  font-weight: 600;
+  background-color: rgba(177, 177, 177, 0.219);
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  height: 75%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: #1971c2;
+}
