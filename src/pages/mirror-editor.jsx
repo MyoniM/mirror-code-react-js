@@ -19,9 +19,7 @@ export default function MirrorEditor() {
   console.log("*****************888");
   const socketRef = useRef();
   const codeRef = useRef("");
-  const handleCodeChange = (code) => {
-    codeRef.current = code;
-  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const { r, u } = queryString.parse(location.search);
@@ -84,7 +82,7 @@ export default function MirrorEditor() {
           <Room roomUsers={roomUsers} room={r} />
         </div>
         <div className={classes.editor}>
-          <Editor socketRef={socketRef} room={r} handleCodeChange={handleCodeChange} />
+          <Editor socketRef={socketRef} room={r} codeRef={codeRef} />
         </div>
       </div>
     </div>

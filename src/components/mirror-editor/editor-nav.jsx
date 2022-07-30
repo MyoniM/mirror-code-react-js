@@ -8,19 +8,18 @@ import classes from "./editor-nav.module.css";
 import Logo from "../logo";
 // import Timer from "../timer/timer";
 import Profile from "../profile";
-// import CodeLang from "../code-lang";
+import CodeLang from "../code-lang";
 import SaveGistModal from "./save-gist-modal";
-// local
+
 export default function EditorNav() {
   const [isOpened, setIsOpened] = useState(false);
-
   const handleSaveCode = async () => setIsOpened(true);
 
   return (
     <div className={classes.wrapper}>
       <Logo src={"/assets/logo.png"} />
       <div className={classes.space} />
-      {/* <CodeLang /> */}
+      <CodeLang />
       {/* <Timer /> */}
 
       <div className={classes.rightMenu}>

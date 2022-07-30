@@ -9,14 +9,31 @@
   background-color: var(--dark-bg);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border: var(--dark-border);
 }
+
 .header h3 {
   font-family: "IBM Plex Sans", sans-serif;
 }
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.status {
+  background-color: #1970c270;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-top: 5px;
+}
+
 .body {
   padding: 0 10px;
 }
