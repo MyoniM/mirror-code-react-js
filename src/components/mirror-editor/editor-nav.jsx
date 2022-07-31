@@ -6,12 +6,11 @@ import { Button } from "@mantine/core";
 import classes from "./editor-nav.module.css";
 // components
 import Logo from "../logo";
-// import Timer from "../timer/timer";
 import Profile from "../profile";
 import CodeLang from "../code-lang";
 import SaveGistModal from "./save-gist-modal";
 
-export default function EditorNav() {
+export default function EditorNav({ codeRef }) {
   const [isOpened, setIsOpened] = useState(false);
   const handleSaveCode = async () => setIsOpened(true);
 
@@ -20,7 +19,6 @@ export default function EditorNav() {
       <Logo src={"/assets/logo.png"} />
       <div className={classes.space} />
       <CodeLang />
-      {/* <Timer /> */}
 
       <div className={classes.rightMenu}>
         <Button
@@ -36,7 +34,7 @@ export default function EditorNav() {
         >
           Save Code
         </Button>
-        <SaveGistModal isOpened={isOpened} setIsOpened={setIsOpened} />
+        <SaveGistModal codeRef={codeRef} isOpened={isOpened} setIsOpened={setIsOpened} />
         <Profile />
       </div>
     </div>

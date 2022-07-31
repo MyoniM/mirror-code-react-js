@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "IBM Plex Sans", sans-serif;
+
   background-color: var(--dark-bg-900);
 }
 .CodeMirror {
@@ -15,7 +15,8 @@ a {
 }
 
 * {
-  font-family: Roboto;
+  font-family: "IBM Plex Sans", sans-serif;
+
   letter-spacing: 0.75px;
   box-sizing: border-box;
 }

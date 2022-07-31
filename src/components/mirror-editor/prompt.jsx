@@ -7,7 +7,6 @@ import classes from "./prompt.module.css";
 import { displayNotification } from "../../utils/displayNotification";
 
 export default function Prompt({ socketRef, room, editorRef }) {
-  console.log("======================");
   const [value, setValue] = useState("");
   const [syncedValue, setSyncedValue] = useState("");
 

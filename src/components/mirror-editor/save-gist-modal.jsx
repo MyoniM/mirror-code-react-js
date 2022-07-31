@@ -6,7 +6,7 @@ import { useForm } from "@mantine/form";
 import { saveGist } from "../../backend-utils/code-utils/saveGist";
 import { displayNotification } from "../../utils/displayNotification";
 
-export default function SaveGistModal({ isOpened, setIsOpened }) {
+export default function SaveGistModal({ codeRef, isOpened, setIsOpened }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm({
@@ -23,7 +23,7 @@ export default function SaveGistModal({ isOpened, setIsOpened }) {
 
   const handleSubmit = (values) => {
     setIsSubmitting(true);
-    saveGist({ ...values, language: "py", document: "print('me dumb')" })
+    saveGist({ ...values, language: "py", document: codeRef.current })
       .then(() => {
         displayNotification({
           mssg: (

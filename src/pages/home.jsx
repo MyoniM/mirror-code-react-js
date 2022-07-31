@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@mantine/core";
+import { Button, TextInput } from "@mantine/core";
 import { BsGithub } from "react-icons/bs";
 import { VscAdd } from "react-icons/vsc";
 import { FiLogIn } from "react-icons/fi";
@@ -19,9 +19,9 @@ import { createRoomInfo } from "../utils/createRoomInfo";
 import { displayNotification } from "../utils/displayNotification";
 
 const Home = () => {
-  console.log("-----------------");
   const { authUser, loading } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (actionNumber) => {
@@ -37,6 +37,11 @@ const Home = () => {
         if (actionNumber === 0) {
           const { success, username, room } = await createRoomInfo();
           if (success) return navigate(`/mirror-editor/?r=${room}&u=${username}`);
+          throw new Error("Error");
+        } else {
+          if (value === "") throw new Error("Error");
+          const { success, username, _ } = await createRoomInfo();
+          if (success) return navigate(`/mirror-editor/?r=${value}&u=${username}`);
           throw new Error("Error");
         }
       }
@@ -84,22 +89,7 @@ const Home = () => {
             <h1>Code and learn together</h1>
             <p>The collaborative, in-browser IDE</p>
             <div className={classes.actions}>
-              <Button
-                className={classes.btn}
-                leftIcon={
-                  <VscAdd
-                    style={{
-                      fontSize: "20px",
-                    }}
-                  />
-                }
-                size="lg"
-                variant="filled"
-                loading={isLoading}
-                onClick={() => handleSubmit(0)}
-              >
-                Create Room
-              </Button>
+              <TextInput placeholder="Room id" value={value} onChange={(e) => setValue(e.target.value)} size="lg" required />
               <Button
                 className={classes.btn}
                 leftIcon={
@@ -117,9 +107,12 @@ const Home = () => {
                 Join Room
               </Button>
             </div>
+            <p className={classes.create}>
+              Or <span onClick={() => handleSubmit(0)}>create</span> your own room.
+            </p>
           </div>
         </div>
-        <div className={classes.features}></div>
+        {/* <div className={classes.features}></div> */}
       </div>
     </div>
   );

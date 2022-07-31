@@ -16,7 +16,6 @@ import initSocket from "../configs/socket";
 import { displayNotification } from "../utils/displayNotification";
 
 export default function MirrorEditor() {
-  console.log("*****************888");
   const socketRef = useRef();
   const codeRef = useRef("");
   const editorRef = useRef("");
@@ -25,7 +24,6 @@ export default function MirrorEditor() {
   const location = useLocation();
   const { r, u } = queryString.parse(location.search);
   const [roomUsers, setRoomUsers] = useState([]);
-  //   const router = useRouter();
   const { authUser, loading } = useAuth();
 
   const handleError = () => {
@@ -37,7 +35,7 @@ export default function MirrorEditor() {
       ),
       color: "red",
     });
-    // router.replace("/");
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {
@@ -54,7 +52,7 @@ export default function MirrorEditor() {
     socketRef.current.emit("join_room", { username: u, room: r });
     // Listeners
     // (DEV) CATCH-ALL EVENTS
-    socketRef.current.onAny((event, ...args) => console.log(event, args));
+    // socketRef.current.onAny((event, ...args) => console.log(event, args));
     socketRef.current.on("message", (message) => {
       displayNotification({ mssg: <p style={{ margin: 0 }}>{message.text}</p>, color: "blue" });
     });
@@ -77,7 +75,7 @@ export default function MirrorEditor() {
   if (loading || !authUser) return <CenterLoading height="100vh" width="100vw" />;
   return (
     <div className={classes.container}>
-      <EditorNav />
+      <EditorNav codeRef={codeRef} />
       <div className={classes.wrapper}>
         <div className={classes.prompt}>
           <Prompt socketRef={socketRef} room={r} editorRef={editorRef} />

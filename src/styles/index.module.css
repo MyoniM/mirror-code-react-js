@@ -40,8 +40,15 @@
   justify-content: center;
 }
 .actions .btn {
-  box-shadow: 2px 2px 50px #0079f1;
+  box-shadow: 2px 2px 60px #0079f1;
   font-family: "IBM Plex Sans", sans-serif;
+}
+.create {
+  font-size: 16px !important;
+}
+.create span{
+  color: #4ca0f5;
+  cursor: pointer;
 }
 
 .features {

@@ -19,7 +19,6 @@ import Output from "./output";
 import { displayNotification } from "../../utils/displayNotification";
 
 export default function Editor({ socketRef, room, codeRef }) {
-  console.log("============ERRRR==========");
   const [result, setResult] = useState({
     submittedAt: "Not submitted",
     executionTime: "0",
