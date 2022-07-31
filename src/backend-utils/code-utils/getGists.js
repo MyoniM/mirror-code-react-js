@@ -2,7 +2,7 @@ import { Octokit } from "@octokit/core";
 
 export const getGists = async () => {
   const octokit = new Octokit({
-    auth: `token ${localStorage.getItem("O2")!}`,
+    auth: `token ${localStorage.getItem("O2")}`,
   });
   try {
     const result = await octokit.request("GET /gists", {});

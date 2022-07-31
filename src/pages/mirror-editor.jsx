@@ -19,6 +19,7 @@ export default function MirrorEditor() {
   console.log("*****************888");
   const socketRef = useRef();
   const codeRef = useRef("");
+  const editorRef = useRef("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -61,6 +62,7 @@ export default function MirrorEditor() {
     socketRef.current.on("room_users", ({ joinedUser, users }) => {
       setRoomUsers(users);
       if (u !== joinedUser) socketRef.current?.emit("sync_code", { room: r, code: codeRef.current });
+      if (u !== joinedUser) socketRef.current?.emit("sync_prompt", { room: r, prompt: editorRef.current });
     });
 
     return () => {
@@ -78,7 +80,7 @@ export default function MirrorEditor() {
       <EditorNav />
       <div className={classes.wrapper}>
         <div className={classes.prompt}>
-          <Prompt />
+          <Prompt socketRef={socketRef} room={r} editorRef={editorRef} />
           <Room roomUsers={roomUsers} room={r} />
         </div>
         <div className={classes.editor}>

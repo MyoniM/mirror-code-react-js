@@ -16,7 +16,6 @@ import classes from "./editor.module.css";
 import Output from "./output";
 
 //local
-import { runCode } from "../../backend-utils/code-utils/run-code";
 import { displayNotification } from "../../utils/displayNotification";
 
 export default function Editor({ socketRef, room, codeRef }) {
@@ -53,7 +52,11 @@ export default function Editor({ socketRef, room, codeRef }) {
   useEffect(() => {
     if (!socketRef.current) return;
     socketRef.current.on("code_change", (code) => {
-      if (code !== null) editorRef.current.setValue(code);
+      if (code !== null) {
+        editorRef.current.setValue(code);
+        editorRef.current.focus()
+        editorRef.current.setCursor({ line: 3, ch: 10 });
+      }
     });
 
     socketRef.current.on("code_executing", () => {

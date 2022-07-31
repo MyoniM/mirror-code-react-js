@@ -1,3 +1,27 @@
 .wrapper {
-  background-color: black;
+  background-color: #2c2e33;
+  border-radius: 5px;
+}
+.header {
+  background-color: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: var(--dark-border);
+  color: white;
+  height: 55px;
+}
+
+.header h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.roomBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

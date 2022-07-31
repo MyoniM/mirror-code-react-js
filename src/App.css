@@ -3,11 +3,10 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  font-family: "IBM Plex Sans", sans-serif;
   background-color: var(--dark-bg-900);
 }
 .CodeMirror {
-  border: 1px solid #eee;
   height: 64vh !important;
 }
 a {
