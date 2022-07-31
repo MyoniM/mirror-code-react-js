@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Textarea, Button } from "@mantine/core";
 import { FaSyncAlt } from "react-icons/fa";
 // style
@@ -41,7 +41,7 @@ export default function Prompt({ socketRef, room, editorRef }) {
       <div className={classes.header}>
         <h3>Prompt</h3>
         <div className={classes.roomBtn}>
-          <Button disabled={syncedValue == value} variant="filled" leftIcon={<FaSyncAlt />} color={"green"} onClick={handleSync}>
+          <Button disabled={syncedValue === value} variant="filled" leftIcon={<FaSyncAlt />} color={"green"} onClick={handleSync}>
             Sync
           </Button>
         </div>

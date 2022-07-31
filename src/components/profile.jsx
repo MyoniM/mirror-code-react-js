@@ -1,8 +1,6 @@
 import React from "react";
-import { Menu, Divider } from "@mantine/core";
-import { FiLogOut, FiSettings } from "react-icons/fi";
-import { HiOutlineCode } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { Menu } from "@mantine/core";
+import { FiLogOut } from "react-icons/fi";
 
 // local
 import { useAuth } from "../hooks/useAuth";
@@ -14,13 +12,12 @@ const style = {
   cursor: "pointer",
 };
 export default function Profile() {
-  const navigate = useNavigate();
 
   const { authUser, signOut } = useAuth();
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <img src={authUser?.photoURL || ""} style={style} />
+        <img src={authUser?.photoURL || ""} style={style} alt="profile img"/>
       </Menu.Target>
 
       <Menu.Dropdown>

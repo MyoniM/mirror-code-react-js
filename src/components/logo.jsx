@@ -13,7 +13,7 @@ export default function Logo({ src }) {
       }}
       onClick={() => navigate(`/`)}
     >
-      <img src={src} width="70" height="65" />
+      <img src={src} width="70" height="65" alt="logo"/>
       <h3
         style={{
           zIndex: 100,

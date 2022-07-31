@@ -11,7 +11,7 @@ const data = [
 const SelectItem = forwardRef(({ image, label, ...others }, ref) => (
   <div ref={ref} {...others}>
     <Group noWrap>
-      <img src={image} height="25px" width="25px" />
+      <img src={image} height="25px" width="25px" alt="logo" />
       <Text size="sm">{label}</Text>
     </Group>
   </div>

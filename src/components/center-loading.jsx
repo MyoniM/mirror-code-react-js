@@ -1,10 +1,6 @@
 import React from "react";
 
-interface IProps {
-  width: string;
-  height: string;
-}
-export default function CenterLoading({ width, height }: IProps) {
+export default function CenterLoading({ width, height }) {
   return (
     <div
       style={{

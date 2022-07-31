@@ -31,7 +31,9 @@ export default function useFirebaseAuth() {
       }
     });
     return () => unsubscribe();
+    /* eslint-disable no-alert, no-console */
   }, []);
+  /* eslint-enable no-alert, no-console */
 
   return {
     authUser,

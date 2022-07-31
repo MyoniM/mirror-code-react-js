@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextInput } from "@mantine/core";
 import { BsGithub } from "react-icons/bs";
-import { VscAdd } from "react-icons/vsc";
 import { FiLogIn } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
@@ -40,7 +39,7 @@ const Home = () => {
           throw new Error("Error");
         } else {
           if (value === "") throw new Error("Error");
-          const { success, username, _ } = await createRoomInfo();
+          const { success, username } = await createRoomInfo();
           if (success) return navigate(`/mirror-editor/?r=${value}&u=${username}`);
           throw new Error("Error");
         }
