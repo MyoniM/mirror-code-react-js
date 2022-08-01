@@ -6,7 +6,7 @@ body {
 
   background-color: var(--dark-bg-900);
 }
-.CodeMirror {
+.cm-editor {
   height: 64vh !important;
 }
 a {

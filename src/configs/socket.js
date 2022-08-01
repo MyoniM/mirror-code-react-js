@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
+import { devBackendApi, prodBackendApi } from "../constants/baseUrl";
 
-const URL = "https://stormy-ocean-56729.herokuapp.com";
-const initSocket = () => io(URL);
+const initSocket = () => io(devBackendApi);
 
 export default initSocket;

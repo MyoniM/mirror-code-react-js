@@ -1,14 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFullscreen, BsFullscreenExit } from "react-icons/bs";
 import { Button } from "@mantine/core";
 import { useFullscreen } from "@mantine/hooks";
-import Codemirror from "codemirror";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/dracula.css";
-import "codemirror/mode/python/python";
-import "codemirror/addon/edit/closetag";
-import "codemirror/addon/edit/closebrackets";
-
+import * as random from "lib0/random";
+// codemirror
+import * as Y from "yjs";
+import { yCollab, yUndoManagerKeymap } from "y-codemirror.next";
+import { WebrtcProvider } from "y-webrtc";
+import { basicSetup } from "codemirror";
+import { EditorView, keymap } from "@codemirror/view";
+import { EditorState } from "@codemirror/state";
+import { python } from "@codemirror/lang-python";
+import { indentUnit } from "@codemirror/language";
+import { oneDarkTheme } from "@codemirror/theme-one-dark";
+import { syntaxHighlighting } from "@codemirror/language";
+import { HighlightStyle } from "@codemirror/language";
 // style
 import classes from "./editor.module.css";
 
@@ -17,47 +23,71 @@ import Output from "./output";
 
 //local
 import { displayNotification } from "../../utils/displayNotification";
+import { highlight, userColors } from "../../constants/theme";
 
-export default function Editor({ socketRef, room, codeRef }) {
+export default function Editor({ socketRef, room, userName, codeRef }) {
   const [result, setResult] = useState({
     submittedAt: "Not submitted",
     executionTime: "0",
     output: { data: "Click 'Run Code' to see program output.", stderr: false },
   });
   const [codeExecuting, setCodeExecuting] = useState(false);
-
   const { ref, toggle, fullscreen } = useFullscreen();
-  const editorRef = useRef(null);
 
   useEffect(() => {
-    editorRef.current = Codemirror.fromTextArea(document.getElementById("realtimeEditor"), {
-      mode: { name: "python" },
-      theme: "dracula",
-      autoCloseTags: true,
-      autoCloseBrackets: true,
-      lineNumbers: true,
-    });
+    const userColor = userColors[random.uint32() % userColors.length];
 
-    editorRef.current.on("change", (instance, changes) => {
-      const code = instance.getValue();
-      codeRef.current = code;
-      const { origin } = changes;
-      if (origin !== "setValue") {
-        socketRef.current.emit("code_change", { room, code });
+    const yDoc = new Y.Doc();
+    let provider = null;
+    try {
+      provider = new WebrtcProvider(room, yDoc, {
+        signaling: ["wss://signaling.yjs.dev", "wss://y-webrtc-signaling-eu.herokuapp.com", "wss://y-webrtc-signaling-us.herokuapp.com"],
+        maxConns: 3,
+      });
+      const yText = yDoc.getText("codemirror");
+
+      provider.awareness.setLocalStateField("user", {
+        name: userName,
+        color: userColor.color,
+        colorLight: userColor.light,
+      });
+
+      const myHighlightStyle = HighlightStyle.define(highlight);
+      const state = EditorState.create({
+        doc: yText.toString(),
+        extensions: [
+          keymap.of([...yUndoManagerKeymap]),
+          basicSetup,
+          python(),
+          yCollab(yText, provider.awareness),
+          indentUnit.of("    "),
+          EditorView.updateListener.of((e) => (codeRef.current = e.state.doc.toString())),
+          // theme
+          oneDarkTheme,
+          syntaxHighlighting(myHighlightStyle),
+        ],
+      });
+      new EditorView({ state, parent: document.querySelector("#editor") });
+    } catch (_) {
+      displayNotification({
+        mssg: (
+          <p style={{ margin: 0 }}>
+            <b>Error!</b> Something went wrong. Try refreshing.
+          </p>
+        ),
+        color: "red",
+      });
+    }
+    return () => {
+      if (provider) {
+        provider.disconnect(); //the provider should stop propagating changes if user leaves editor
+        yDoc.destroy(); //We destroy doc we created and disconnect
       }
-    });
+    };
   }, []);
 
   useEffect(() => {
     if (!socketRef.current) return;
-    socketRef.current.on("code_change", (code) => {
-      if (code !== null) {
-        editorRef.current.setValue(code);
-        editorRef.current.focus()
-        editorRef.current.setCursor({ line: 3, ch: 10 });
-      }
-    });
-
     socketRef.current.on("code_executing", () => {
       setCodeExecuting(true);
     });
@@ -68,7 +98,6 @@ export default function Editor({ socketRef, room, codeRef }) {
     });
 
     return () => {
-      socketRef.current.off("code_change");
       socketRef.current.off("run_result");
       socketRef.current.off("code_executing");
     };
@@ -115,8 +144,7 @@ export default function Editor({ socketRef, room, codeRef }) {
             </Button>
           </div>
         </div>
-
-        <textarea id="realtimeEditor"></textarea>
+        <div id="editor"></div>
       </div>
       <div className={classes.output} style={fullscreen ? { height: "30vh" } : { height: "21vh" }}>
         <Output result={result} codeExecuting={codeExecuting} />

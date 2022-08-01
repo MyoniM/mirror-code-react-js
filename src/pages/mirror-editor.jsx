@@ -59,7 +59,7 @@ export default function MirrorEditor() {
     // get users inside the room
     socketRef.current.on("room_users", ({ joinedUser, users }) => {
       setRoomUsers(users);
-      if (u !== joinedUser) socketRef.current?.emit("sync_code", { room: r, code: codeRef.current });
+      // if (u !== joinedUser) socketRef.current?.emit("sync_code", { room: r, code: codeRef.current });
       if (u !== joinedUser) socketRef.current?.emit("sync_prompt", { room: r, prompt: editorRef.current });
     });
 
@@ -82,7 +82,7 @@ export default function MirrorEditor() {
           <Room roomUsers={roomUsers} room={r} />
         </div>
         <div className={classes.editor}>
-          <Editor socketRef={socketRef} room={r} codeRef={codeRef} />
+          <Editor socketRef={socketRef} room={r} userName={u} codeRef={codeRef} />
         </div>
       </div>
     </div>
