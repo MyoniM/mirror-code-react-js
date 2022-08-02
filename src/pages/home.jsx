@@ -125,7 +125,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {/* <div className={classes.features}></div> */}
       </div>
     </div>
   );
