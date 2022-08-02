@@ -39,7 +39,7 @@ export default function MirrorEditor() {
   };
 
   useEffect(() => {
-    if (!loading && !authUser) navigate("/", { replace: true });
+    if ((!loading && !authUser) || r === "" || u === "") navigate("/", { replace: true });
   }, [authUser, loading]);
 
   // this effect wont run without a user
@@ -59,7 +59,6 @@ export default function MirrorEditor() {
     // get users inside the room
     socketRef.current.on("room_users", ({ joinedUser, users }) => {
       setRoomUsers(users);
-      // if (u !== joinedUser) socketRef.current?.emit("sync_code", { room: r, code: codeRef.current });
       if (u !== joinedUser) socketRef.current?.emit("sync_prompt", { room: r, prompt: editorRef.current });
     });
 

@@ -6,7 +6,7 @@ import * as random from "lib0/random";
 // codemirror
 import * as Y from "yjs";
 import { yCollab, yUndoManagerKeymap } from "y-codemirror.next";
-import { WebrtcProvider } from "y-webrtc";
+import { WebsocketProvider } from "y-websocket";
 import { basicSetup } from "codemirror";
 import { EditorView, keymap } from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
@@ -40,10 +40,7 @@ export default function Editor({ socketRef, room, userName, codeRef }) {
     const yDoc = new Y.Doc();
     let provider = null;
     try {
-      provider = new WebrtcProvider(room, yDoc, {
-        signaling: ["wss://signaling.yjs.dev", "wss://y-webrtc-signaling-eu.herokuapp.com", "wss://y-webrtc-signaling-us.herokuapp.com"],
-        maxConns: 3,
-      });
+      const provider = new WebsocketProvider("wss://demos.yjs.dev", room, yDoc);
       const yText = yDoc.getText("codemirror");
 
       provider.awareness.setLocalStateField("user", {

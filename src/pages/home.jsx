@@ -30,9 +30,7 @@ const Home = () => {
       if (!authUser) {
         const token = await oAuth();
         localStorage.setItem("O2", token);
-        setIsLoading(false);
       } else {
-        // actionNumber === 0 ? create : join
         if (actionNumber === 0) {
           const { success, username, room } = await createRoomInfo();
           if (success) return navigate(`/mirror-editor/?r=${room}&u=${username}`);
@@ -60,7 +58,19 @@ const Home = () => {
 
   if (loading) return <CenterLoading height="100vh" width="100vw" />;
   return (
-    <div>
+    <div className={classes.area}>
+      <ul className={classes.circles}>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
       <nav className={classes.nav}>
         <Logo src="/assets/dark-logo.png" />
         {authUser ? (
@@ -106,9 +116,13 @@ const Home = () => {
                 Join Room
               </Button>
             </div>
-            <p className={classes.create}>
-              Or <span onClick={() => handleSubmit(0)}>create</span> your own room.
-            </p>
+            <div className={classes.create}>
+              Or{" "}
+              <Button style={{ backgroundColor: "transparent", padding: 0 }} onClick={() => handleSubmit(0)}>
+                create
+              </Button>{" "}
+              your own room.
+            </div>
           </div>
         </div>
         {/* <div className={classes.features}></div> */}
