@@ -3,11 +3,12 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-
+  /* overflow: hidden; */
   background-color: var(--dark-bg-900);
 }
 .cm-editor {
-  height: 64vh !important;
+  height: 64vh;
+  overflow: auto;
 }
 a {
   color: inherit;
@@ -67,6 +68,33 @@ a {
   animation: spin 2s ease infinite;
   box-shadow: 4px 4px 30px #0079f1;
 }
+
+/* global style for react-split */
+.split {
+  display: flex;
+  flex-direction: row;
+}
+
+.gutter {
+  background-color: var(--dark-bg-500);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transition: all ease 0.3s;
+}
+
+.gutter:hover {
+  background-color: #1971c1;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  cursor: col-resize;
+}
+.gutter.gutter-vertical {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  cursor: row-resize;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

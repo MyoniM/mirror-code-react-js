@@ -3,6 +3,7 @@ import { BsFullscreen, BsFullscreenExit } from "react-icons/bs";
 import { Button } from "@mantine/core";
 import { useFullscreen } from "@mantine/hooks";
 import * as random from "lib0/random";
+
 // codemirror
 import * as Y from "yjs";
 import { yCollab, yUndoManagerKeymap } from "y-codemirror.next";
@@ -132,20 +133,14 @@ export default function Editor({ socketRef, room, userName, codeRef }) {
             <Button className={classes.toggleBtn} onClick={toggle}>
               {fullscreen ? <BsFullscreenExit className={classes.icon} /> : <BsFullscreen className={classes.icon} />}
             </Button>
-            <Button
-              variant="filled"
-              onClick={handleRunCode}
-              // loading={codeExecuting}
-            >
+            <Button variant="filled" onClick={handleRunCode} loading={codeExecuting}>
               Run Code
             </Button>
           </div>
         </div>
         <div id="editor"></div>
       </div>
-      <div className={classes.output} style={fullscreen ? { height: "30vh" } : { height: "21vh" }}>
-        <Output result={result} codeExecuting={codeExecuting} />
-      </div>
+      <Output result={result} codeExecuting={codeExecuting} />
     </div>
   );
 }

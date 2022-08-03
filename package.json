@@ -21,6 +21,7 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-split": "^2.0.14",
     "socket.io-client": "^4.4.1",
     "y-codemirror.next": "^0.3.2",
     "y-websocket": "^1.4.3",

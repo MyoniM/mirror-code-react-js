@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import queryString from "query-string";
+import Split from "react-split";
+
 // style
 import classes from "../styles/mirror-editor.module.css";
 
@@ -73,17 +75,30 @@ export default function MirrorEditor() {
 
   if (loading || !authUser) return <CenterLoading height="100vh" width="100vw" />;
   return (
-    <div className={classes.container}>
+    <>
       <EditorNav codeRef={codeRef} />
       <div className={classes.wrapper}>
-        <div className={classes.prompt}>
-          <Prompt socketRef={socketRef} room={r} editorRef={editorRef} />
-          <Room roomUsers={roomUsers} room={r} />
-        </div>
-        <div className={classes.editor}>
-          <Editor socketRef={socketRef} room={r} userName={u} codeRef={codeRef} />
-        </div>
+        <Split
+          style={{ display: "flex" }}
+          sizes={[40, 60]}
+          minSize={450}
+          expandToMin={false}
+          gutterSize={10}
+          gutterAlign="center"
+          snapOffset={30}
+          dragInterval={1}
+          direction="horizontal"
+          cursor="col-resize"
+        >
+          <div className={classes.prompt}>
+            <Prompt socketRef={socketRef} room={r} editorRef={editorRef} />
+            <Room roomUsers={roomUsers} room={r} />
+          </div>
+          <div className={classes.editor}>
+            <Editor socketRef={socketRef} room={r} userName={u} codeRef={codeRef} />
+          </div>
+        </Split>
       </div>
-    </div>
+    </>
   );
 }

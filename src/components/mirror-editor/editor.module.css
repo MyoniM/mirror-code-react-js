@@ -1,9 +1,11 @@
 .wrapper {
+  height: calc(100vh - 60px);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border-radius: 5px;
+  gap: 10px;
 }
+
 .header {
   height: 55px;
   padding: 0 10px;
@@ -17,7 +19,7 @@
   border-top-right-radius: 5px;
   border: var(--dark-border);
 }
-.header h3{
+.header h3 {
   font-family: "IBM Plex Sans", sans-serif;
 }
 

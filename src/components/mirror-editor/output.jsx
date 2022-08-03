@@ -23,11 +23,11 @@ export default function Output({ result, codeExecuting }) {
           </div>
         </Skeleton>
       </div>
-      <div className={classes.body}>
-        <Skeleton visible={codeExecuting} height="12vh" style={{ marginTop: "5px" }}>
-          <textarea className={classes.output} value={output.data} style={output.stderr ? { color: "red" } : {}} readOnly />
-        </Skeleton>
-      </div>
+      {/* <div className={classes.body}> */}
+      <Skeleton className={classes.body} visible={codeExecuting}>
+        <textarea className={classes.output} value={output.data} style={output.stderr ? { color: "red" } : {}} readOnly />
+      </Skeleton>
+      {/* </div> */}
     </div>
   );
 }

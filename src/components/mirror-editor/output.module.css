@@ -2,6 +2,7 @@
   background-color: var(--dark-bg-800);
   color: white;
   height: 100%;
+  max-height: calc(63vh);
   border-radius: 5px;
 }
 
@@ -35,10 +36,15 @@
 }
 
 .body {
+  height: calc(100% - 70px);
   padding: 0 10px;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 1fr);
 }
 
 .body .output {
+  grid-row: auto;
+
   margin: 10px 0;
   padding: 10px;
   border-radius: 3px;
@@ -46,8 +52,6 @@
   border: none;
   outline: none;
   color: white;
-  min-height: 12vh;
-  max-height: 14vh;
   width: 100%;
   overflow: auto;
 
@@ -56,4 +60,10 @@
   box-shadow: none;
 
   background-color: rgb(77, 77, 77);
+}
+
+.body .skeleton {
+  grid-row: auto !important;
+  /* height: 100% !important; */
+  background-color: aqua;
 }
