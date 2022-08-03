@@ -6,7 +6,7 @@ import { useForm } from "@mantine/form";
 import { saveGist } from "../../backend-utils/code-utils/saveGist";
 import { displayNotification } from "../../utils/displayNotification";
 
-export default function SaveGistModal({ codeRef, isOpened, setIsOpened }) {
+export default function SaveGistModal({ codeRef, editorRef, isOpened, setIsOpened }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm({
@@ -21,9 +21,10 @@ export default function SaveGistModal({ codeRef, isOpened, setIsOpened }) {
     validateInputOnChange: true,
   });
 
+  const document = "'''\nQuestion prompt: " + "\n" + editorRef.current + "\n'''\n" + codeRef.current;
   const handleSubmit = (values) => {
     setIsSubmitting(true);
-    saveGist({ ...values, language: "py", document: codeRef.current })
+    saveGist({ ...values, language: "py", document: document })
       .then(() => {
         displayNotification({
           mssg: (

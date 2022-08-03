@@ -16,6 +16,7 @@ import { indentUnit } from "@codemirror/language";
 import { oneDarkTheme } from "@codemirror/theme-one-dark";
 import { syntaxHighlighting } from "@codemirror/language";
 import { HighlightStyle } from "@codemirror/language";
+import { indentWithTab } from "@codemirror/commands";
 // style
 import classes from "./editor.module.css";
 
@@ -54,12 +55,13 @@ export default function Editor({ socketRef, room, userName, codeRef }) {
       const state = EditorState.create({
         doc: yText.toString(),
         extensions: [
-          keymap.of([...yUndoManagerKeymap]),
           basicSetup,
           python(),
-          yCollab(yText, provider.awareness),
           indentUnit.of("    "),
+          keymap.of([...yUndoManagerKeymap, indentWithTab]),
           EditorView.updateListener.of((e) => (codeRef.current = e.state.doc.toString())),
+          // yjs
+          yCollab(yText, provider.awareness),
           // theme
           oneDarkTheme,
           syntaxHighlighting(myHighlightStyle),
@@ -138,7 +140,7 @@ export default function Editor({ socketRef, room, userName, codeRef }) {
             </Button>
           </div>
         </div>
-        <div id="editor"></div>
+        <div id="editor" spellcheck="false"></div>
       </div>
       <Output result={result} codeExecuting={codeExecuting} />
     </div>

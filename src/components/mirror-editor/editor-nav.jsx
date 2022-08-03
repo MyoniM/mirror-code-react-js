@@ -10,7 +10,7 @@ import Profile from "../profile";
 import CodeLang from "../code-lang";
 import SaveGistModal from "./save-gist-modal";
 
-export default function EditorNav({ codeRef }) {
+export default function EditorNav({ codeRef, editorRef }) {
   const [isOpened, setIsOpened] = useState(false);
   const handleSaveCode = async () => setIsOpened(true);
 
@@ -34,7 +34,7 @@ export default function EditorNav({ codeRef }) {
         >
           Save Code
         </Button>
-        <SaveGistModal codeRef={codeRef} isOpened={isOpened} setIsOpened={setIsOpened} />
+        <SaveGistModal codeRef={codeRef} editorRef={editorRef} isOpened={isOpened} setIsOpened={setIsOpened} />
         <Profile />
       </div>
     </div>

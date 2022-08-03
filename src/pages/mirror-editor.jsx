@@ -76,7 +76,7 @@ export default function MirrorEditor() {
   if (loading || !authUser) return <CenterLoading height="100vh" width="100vw" />;
   return (
     <>
-      <EditorNav codeRef={codeRef} />
+      <EditorNav codeRef={codeRef} editorRef={editorRef} />
       <div className={classes.wrapper}>
         <Split
           style={{ display: "flex" }}
